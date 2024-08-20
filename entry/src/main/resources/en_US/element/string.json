@@ -1,0 +1,16 @@
+{
+  "string": [
+    {
+      "name": "module_desc",
+      "value": "Home rent"
+    },
+    {
+      "name": "EntryAbility_desc",
+      "value": "Home rent"
+    },
+    {
+      "name": "EntryAbility_label",
+      "value": "Homerent"
+    }
+  ]
+}
