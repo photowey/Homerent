@@ -14,4 +14,14 @@
  * limitations under the License.
  */
 
-export const TOKEN_NAME: string = 'token'
+import { Http } from './Http'
+
+/**
+ * {@code Index}
+ *
+ * @author photowey
+ * @since 2024/08/20
+ * @version
+ */
+
+export const requester = new Http()

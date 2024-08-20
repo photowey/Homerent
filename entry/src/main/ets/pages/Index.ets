@@ -14,8 +14,6 @@
  * limitations under the License.
  */
 
-import { CURRENT_TAB_INDEX_NAME } from '../constants/HomeConstants';
-
 import { Discovery } from './Discovery';
 import { Home } from './Home';
 import { Service } from './Service';
@@ -36,7 +34,9 @@ import { Mine } from './Mine';
 @Component
 struct Index {
 
-  @StorageLink(CURRENT_TAB_INDEX_NAME)
+  // ----------------------------------------------------------------
+
+  @State
   currentTabIndex: number = 0;
 
   // ----------------------------------------------------------------
@@ -51,51 +51,52 @@ struct Index {
     Tabs({ index: this.currentTabIndex }) {
       TabContent() {
         Home()
-      }.tabBar(this.barBuilder(0, $r('app.media.tabbar_home'), $r('app.media.tabbar_home_active'), '首页'))
+      }.tabBar(this.tabbarBuilder(0, $r('app.media.tabbar_home'), $r('app.media.tabbar_home_active'), '首页'))
 
       TabContent() {
         View()
-      }.tabBar(this.barBuilder(0, $r('app.media.tabbar_see'), $r('app.media.tabbar_see_active'), '想看'))
+      }.tabBar(this.tabbarBuilder(1, $r('app.media.tabbar_see'), $r('app.media.tabbar_see_active'), '想看'))
 
       TabContent() {
         Service()
-      }.tabBar(this.barBuilder(0, $r('app.media.tabbar_service'), $r('app.media.tabbar_service_active'), '服务'))
+      }.tabBar(this.tabbarBuilder(2, $r('app.media.tabbar_service'), $r('app.media.tabbar_service_active'), '服务'))
 
       TabContent() {
         Discovery()
-      }.tabBar(this.barBuilder(0, $r('app.media.tabbar_discover'), $r('app.media.tabbar_discover_active'), '发现'))
+      }.tabBar(this.tabbarBuilder(3, $r('app.media.tabbar_discover'), $r('app.media.tabbar_discover_active'), '发现'))
 
       TabContent() {
         Mine()
-      }.tabBar(this.barBuilder(0, $r('app.media.tabbar_my'), $r('app.media.tabbar_my_active'), '我的'))
+      }.tabBar(this.tabbarBuilder(4, $r('app.media.tabbar_my'), $r('app.media.tabbar_my_active'), '我的'))
     }
+    .barHeight(50) // tab 栏 高度 (默认: 56)
+    .scrollable(false) // 禁止滚动切换 tab
     .barPosition(BarPosition.End)
-    .onChange((index) => {
+    .onChange((index: number) => {
       this.currentTabIndex = index
     })
   }
 
   @Builder
-  barBuilder(index: number, icon: Resource, selectedIcon: Resource, title: string) {
+  tabbarBuilder(index: number, icon: Resource, selectedIcon: Resource, title: string) {
     Column() {
       Image(this.tabSelected(index) ? selectedIcon : icon)
-        .tabIconStyle()
+        .tabbarIconStyle()
       Text(title)
-        .tabTitleStyle(this.tabSelected(index) ? Color.Black : '#959595')
+        .tabbarTitleStyle(this.tabSelected(index) ? $r('app.color.black') : $r('app.color.gray_text'))
     }
   }
 }
 
 @Styles
-function tabIconStyle() {
-  .width(25)
-  .height(25)
+function tabbarIconStyle() {
+  .width(28)
+  .height(28)
 }
 
 @Extend(Text)
-function tabTitleStyle(color: ResourceColor) {
+function tabbarTitleStyle(color: ResourceColor) {
   .fontSize(10)
   .fontWeight(FontWeight.Medium)
   .fontColor(color)
-  .margin({ bottom: 2 })
 }

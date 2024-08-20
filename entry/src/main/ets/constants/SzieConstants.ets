@@ -14,4 +14,31 @@
  * limitations under the License.
  */
 
-export const TOKEN_NAME: string = 'token'
+/**
+ * 边距常量
+ *
+ * @author photowey
+ * @since 2024/08/20
+ * @version 1.0.0
+ */
+
+// 边距
+export const PADDING_S = 10;
+
+export const PADDING_M = 16;
+
+export const PADDING = PADDING_M;
+
+export const PADDING_L = 20;
+
+// 圆角
+export const BORDER_RADIUS_S = 4;
+
+export const BORDER_RADIUS_M = 8;
+
+export const BORDER_RADIUS = BORDER_RADIUS_M;
+
+export const BORDER_RADIUS_L = 12;
+
+// 阴影
+export const SHADOW_RADIUS = 7.8;

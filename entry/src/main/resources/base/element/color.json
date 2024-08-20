@@ -3,6 +3,50 @@
     {
       "name": "start_window_background",
       "value": "#FFFFFF"
+    },
+    {
+      "name": "bg_gray",
+      "value": "#F7F7F7"
+    },
+    {
+      "name": "bg_gray_second",
+      "value": "#F9F9F9"
+    },
+    {
+      "name": "gray_second",
+      "value": "#666666"
+    },
+    {
+      "name": "primary",
+      "value": "#36D1A1"
+    },
+    {
+      "name": "shadow",
+      "value": "#24000000"
+    },
+    {
+      "name": "black",
+      "value": "#000000"
+    },
+    {
+      "name": "white",
+      "value": "#FFFFFF"
+    },
+    {
+      "name": "gray",
+      "value": "#999999"
+    },
+    {
+      "name": "gray_text",
+      "value": "#A0A0A0"
+    },
+    {
+      "name": "indicator_dot_color",
+      "value": "#CCCBCB"
+    },
+    {
+      "name": "indicator_dot_selected_color",
+      "value": "#479559"
     }
   ]
 }

@@ -14,6 +14,13 @@
  * limitations under the License.
  */
 
+import { AxiosResponse } from '@ohos/axios';
+import { getHomeDataApi } from '../api/Home';
+import { IHomeData, INavList, IPlanList, ITileList } from '../models/home/HomeModel';
+import { ApiResponse } from '../models/http/HttpModel';
+import { BannerListDataSource } from '../models/home/BannerListDataSource';
+import { SwiperLayout } from '../views/Home/SwiperLayout';
+
 /**
  * {@code Home}
  * |- 首页
@@ -24,7 +31,53 @@
  */
 @Component
 export struct Home {
+
+  // ----------------------------------------------------------------
+
+  @State
+  bannerList: BannerListDataSource = new BannerListDataSource()
+  @State
+  navList: INavList = [];
+  @State
+  tileList: ITileList = [];
+  @State
+  planList: IPlanList = [];
+  @State
+  adPicture: string = '';
+
+  // ----------------------------------------------------------------
+
+  async getHomeData() {
+    const response: AxiosResponse<ApiResponse<IHomeData>> = await getHomeDataApi()
+
+    this.bannerList.setList(response.data.data.bannerList);
+
+    this.navList = response.data.data.navList;
+    this.tileList = response.data.data.tileList;
+    this.planList = response.data.data.planList;
+    this.adPicture = response.data.data.adPicture;
+  }
+
+  // ----------------------------------------------------------------
+
+  aboutToAppear(): void {
+    this.getHomeData()
+  }
+
+  // ----------------------------------------------------------------
+
   build() {
-    Text('首页')
+    Scroll() {
+      Column() {
+        SwiperLayout({
+          bannerList: this.bannerList
+        })
+      }
+      .width('100%')
+    }
+    .width('100%')
+    .height('100%')
+    .scrollBar(BarState.Off)
+    .align(Alignment.TopStart)
   }
 }

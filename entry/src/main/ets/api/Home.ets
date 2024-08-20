@@ -14,4 +14,20 @@
  * limitations under the License.
  */
 
-export const TOKEN_NAME: string = 'token'
+import { AxiosResponse } from '@ohos/axios';
+
+import { requester } from '../http/Index';
+import { IHomeData } from '../models/home/HomeModel';
+import { ApiResponse } from '../models/http/HttpModel';
+
+/**
+ * {@code getHomeDataApi}
+ * |- 加载首页数据
+ *
+ * @author photowey
+ * @since 2024/08/20
+ * @version 1.0.0
+ */
+export async function getHomeDataApi(): Promise<AxiosResponse<ApiResponse<IHomeData>>> {
+  return requester.get<IHomeData>('/home/info');
+}
